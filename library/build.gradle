@@ -81,35 +81,49 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //noinspection GroovyAssignabilityCheck
     testCompile rootProject.ext.tddDependencies.junit
+    //noinspection GroovyAssignabilityCheck
     testCompile rootProject.ext.tddDependencies.mockito
+    //noinspection GroovyAssignabilityCheck
     testCompile rootProject.ext.tddDependencies.powermockJunit
+    //noinspection GroovyAssignabilityCheck
     testCompile rootProject.ext.tddDependencies.powermockMockito
+    //noinspection GroovyAssignabilityCheck
     testCompile rootProject.ext.tddDependencies.assertjJunitCore
 
+    //noinspection GroovyAssignabilityCheck
     androidTestCompile rootProject.ext.instrumentedDependencies.espressoRunner
+    //noinspection GroovyAssignabilityCheck
     androidTestCompile rootProject.ext.instrumentedDependencies.espressoRules
+    //noinspection GroovyAssignabilityCheck
     androidTestCompile rootProject.ext.instrumentedDependencies.espressoCore
 
     androidTestCompile (rootProject.ext.instrumentedDependencies.assertjAndroid){
         exclude group: 'com.android.support'
     }
 
-
+    //noinspection GroovyAssignabilityCheck
     compile rootProject.ext.androidSupportDependencies.appCompat
+    //noinspection GroovyAssignabilityCheck
     compile rootProject.ext.logDependencies.timber
 
 }
 install {
     repositories.mavenInstaller{
         pom {
+            //noinspection GroovyAssignabilityCheck
             project {
+                //noinspection GroovyAssignabilityCheck
                 packaging 'aar'
+                //noinspection GroovyAssignabilityCheck
                 name 'GWSAndroidGradle'
                 url siteUrl
 
                 licenses {
                     license{
+                        //noinspection GroovyAssignabilityCheck
                         name 'The Apache Software License, Version 2.0'
                         url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                     }
@@ -117,6 +131,7 @@ install {
                 developers {
                     developer {
                         id 'shareme'
+                        //noinspection GroovyAssignabilityCheck
                         name 'Fred Grott'
                         email 'fred.grott@gmail.com'
                     }
@@ -132,15 +147,18 @@ install {
 }
 
 task sourcesJar(type: Jar){
+    //noinspection GroovyAssignabilityCheck
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
 task javadoc(type: Javadoc){
     source = android.sourceSets.main.java.srcDirs
+    //noinspection GroovyAssignabilityCheck
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 task javadocJar(type: Jar, dependsOn: javadoc){
     classifier = 'javadoc'
+    //noinspection 
     from javadoc.destinationDir
 }
 artifacts {
