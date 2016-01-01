@@ -64,9 +64,9 @@ allprojects {
         // we use a plugin to version libraries and applications and the versioning
         // policy is usually different for both the app and library modules
         // thus we define the versions per the plugin in each individual module
-        androidApplicationId = 'com.github.shareme.gwsnddroidgradle'
+        androidApplicationId = 'com.github.shareme.gwsandroidgradle'
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-        testApplicationId = 'com.github.shareme.gwsnddroidgradle.test'
+        testApplicationId = 'com.github.shareme.gwsandroidgradle.test'
 
         androidCompileSdkVersion = 23
         androidBuildToolsVersion = '23.0.2'

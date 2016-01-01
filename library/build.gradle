@@ -158,7 +158,7 @@ task javadoc(type: Javadoc){
 }
 task javadocJar(type: Jar, dependsOn: javadoc){
     classifier = 'javadoc'
-    //noinspection 
+    //noinspection
     from javadoc.destinationDir
 }
 artifacts {
