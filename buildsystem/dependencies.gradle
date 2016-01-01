@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Fred Grott(aka shareme GrottWorkShop)
+ * Copyright (C) 2016 Fred Grott(aka shareme GrottWorkShop)
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License. You may obtain a copy of the License at
@@ -28,9 +28,8 @@ allprojects {
                 }
             }
 
-            //resolution strategy for support annotations being out of synch
-            resolutionStrategy.force 'com.android.support:support-annotations:23.1.1'
-            //resolution strategy for support libs, ie when we use rxpresso for example
+            //cannot do resolutionStrategy.force here, if needed do at the
+            //individual module build.gradle levels
 
         }
     }

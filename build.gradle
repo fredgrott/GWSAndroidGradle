@@ -1,4 +1,20 @@
+/*
+ * Copyright (C) 2016 Fred Grott(aka shareme GrottWorkShop)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is
+ * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under License.
+ */
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+apply from: 'buildsystem/ci_travis.gradle'
+apply from: 'buildsystem/dependencies.gradle'
+
 
 buildscript {
     repositories {
@@ -9,13 +25,65 @@ buildscript {
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        //godot plugin
+        classpath 'de.hannesstruss:godot:0.2'
+        //hugo plugin
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+        //spoon plugin
+        //to run all tests on all devices:
+        // gradle spoon
+        // at the command line
+        classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.0.3'
+        // in app modules
+        // apply plugin: 'com.neenbedankt.android-apt'
+        // need version 1.8 once butterknife is to 8.0.2 stable
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        // genymotion plugin needs applied at a buildsystem gradle snippet
+        // as we want it only applied when as far as the configuration
+        // in our non-ci server environments, unless we are using genymotion
+        //emulators from the ci-server
+        //classpath 'com.genymotion:plugin:1.0'
+        classpath 'org.moallemi.gradle.advanced-build-version:gradle-plugin:1.5.0'
+        //maven tasks for android plugin, if you use jfrog than add that too as I use jitpack instead
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+        //probe
+        classpath 'org.lucasr.probe:gradle-plugin:0.1.3'
+        //dex count pplugin
+        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.3.0"
+        //jacoco-everywhere
+        classpath 'com.trickyandroid:jacoco-everywhere:0.1.0'
+
+
     }
 }
 
 allprojects {
-    repositories {
-        jcenter()
+    ext{
+        //Configure stuff
+        ourReportsDir = '${project.buildDir}/reports'
+        // we use a plugin to version libraries and applications and the versioning
+        // policy is usually different for both the app and library modules
+        // thus we define the versions per the plugin in each individual module
+        androidApplicationId = 'com.github.shareme.gwsnddroidgradle'
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId = 'com.github.shareme.gwsnddroidgradle.test'
+
+        androidCompileSdkVersion = 23
+        androidBuildToolsVersion = '23.0.2'
+        androidMinSdkVersion = 16
+        androidTargetSdkVersion = 23
+
+        /*
+        Compute Date and time for reports, right from
+        Date example from Groovy JDK
+     */
+        buildTime = new Date().format("yyyy-MM-dd'T'HH:mm", TimeZone.getTimeZone("CST"))
+
+
+
+
     }
+
 }
 
 task clean(type: Delete) {
