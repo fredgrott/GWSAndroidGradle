@@ -143,25 +143,9 @@ android {
 
     }
 
+    //noinspection GroovyMissingReturnStatement
     buildTypes {
-        debug {
-            // Run code coverage reports by default on debug builds.
-            debuggable true
-            minifyEnabled false
-            testCoverageEnabled true
-            applicationIdSuffix '.dev'
-            versionNameSuffix '-dev'
 
-            buildConfigField BOOLEAN, LOG_HTTP_REQUESTS, TRUE
-            buildConfigField BOOLEAN, REPORT_CRASHES, FALSE
-            buildConfigField BOOLEAN, ENABLE_VIEW_SERVER, TRUE
-            buildConfigField BOOLEAN, ENABLE_SHARING, TRUE
-
-            buildConfigField "String", "BUILD_TIME", "\"${rootProject.ext.buildTime}\""
-
-
-
-        }
 
         debug {
             // Run code coverage reports by default on debug builds.
@@ -208,6 +192,7 @@ android {
 
     }
 }
+
 //noinspection GroovyMissingReturnStatement
 spoon {
 
@@ -241,6 +226,7 @@ dexcount {
 }
 //espresso runner always has the wrong support-annotations version so
 //we force it here
+//noinspection GroovyAssignabilityCheck
 configurations.all{
     //noinspection GroovyAssignabilityCheck
     resolutionStrategy.force 'com.android.support:support-annotations:23.1.1'
