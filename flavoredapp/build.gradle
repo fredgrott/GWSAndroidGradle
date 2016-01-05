@@ -57,9 +57,7 @@ def DEBUG_VIEW = "DEBUG_VIEW"
 def DEBUG_DATA = "DEBUG_DATA"
 def DEBUG_DESIGN = 'DEBUG_DESIGN'
 
-// for lombok
-def srcJava = 'src/main/java'
-def srcDelomboked = 'build/src-delomboked/main/java'
+
 
 
 

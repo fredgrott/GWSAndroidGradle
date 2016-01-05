@@ -57,9 +57,7 @@ def ENABLE_SHARING = "ENABLE_SHARING"
 
 
 
-// for lombok
-def srcJava = 'src/main/java'
-def srcDelomboked = 'build/src-delomboked/main/java'
+
 
 
 

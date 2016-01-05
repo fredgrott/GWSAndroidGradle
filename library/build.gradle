@@ -13,18 +13,20 @@
 /*
  * Standard Android library:
  *      -No Lombok
+ *      -No Kotlin
  *      -JitPack Deploy instead of JCenter bintray deploy
- *      -No Lambdas but Java7 but no multi-catch
+ *      -No Lambdas but Java7 and no multi-catch
+ *      -Assumption is only most of the time doing straight plain unit testing
  */
 apply plugin: 'com.android.library'
 apply plugin: 'de.hannesstruss.godot'
 apply plugin: 'com.github.dcendents.android-maven'
 
+// for jitpack and local maven deployment of android library
 def libVersionCode = 1
 def libVersionName = "1.0.0.0"
 
-//okay rest of the jitpack stuff for the local maven install to work correctly
-// uncomment next lines and change where appropriate
+
 def siteUrl = 'https://github.com/shareme/GWSAndroidGradle'
 def gitUrl = 'https://github.com/shareme/GWSAndroidGradle.git'
 group = "com.github.shareme"
@@ -32,6 +34,7 @@ version = libVersionName
 
 
 android {
+
     def globalConfiguration = rootProject.extensions.getByName("ext")
     compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
     buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
@@ -53,6 +56,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
+    // some java libraries have meta stuff that interferes
     packagingOptions {
         exclude 'LICENSE.txt'
         exclude 'META-INF/DEPENDENCIES'
@@ -121,6 +125,7 @@ dependencies {
     compile rootProject.ext.logDependencies.timber
 
 }
+//maven local install for both local maven install and jitpack
 install {
     repositories.mavenInstaller{
         pom {
@@ -157,6 +162,7 @@ install {
     }
 }
 
+// tasks to jar sources and jar the javadoc
 task sourcesJar(type: Jar){
     //noinspection GroovyAssignabilityCheck
     from android.sourceSets.main.java.srcDirs

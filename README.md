@@ -3,6 +3,14 @@ GWSAndroidGradle
 
 A set of gradle build scripts for android java application development.
 
+modules:
+
+   app is non flavored and not using lombok or kotlin
+
+   favoredapp is flavored but not using lombok or kotlin
+
+   library is not flavored and not using lombok or kotlin
+
 Downloading
 -----------
 
@@ -31,6 +39,29 @@ the latest-release-number will match the latest release listed in the github rel
 Implementation
 --------------
 
+Using the principle that gradle can load gradle snippets as plugins to separate out the
+gradle build scripts concerns so that we get very readable module build scripts.
+
+This set of build scripts is optimized for fast compiling on junk laptops, that means that I am
+running the code qa stuff as local IDE plugins instead when I need that feedback.
+
+Proguard:
+
+   workaround for samsung devices support lib goof/patch included, its known as the
+   4.x fix and its marked with comment sin the proguard-matches-android-omptimize.pro file.
+
+EditText:
+
+   workaround for api 21 and 22 in res/values/dimens.xml and same in values-21 and values-22 res folders
+
+App Sign Key:
+
+   I use putting app key in buildsystem folder rather than some other local user folder.
+   NOT SAFE for public repos, if you need with public repos you should change it to something reading from
+   the command line as system.property that way you can still execute it on CI servers.
+
+
+
 
 
 Usage
@@ -43,15 +74,19 @@ Changelog
 
 
 
+
 Credits
 -------
 
 Fred Grott(aka shareme  GrottWorkShop)
 [MyGithubProfile](https://github.com/shareme/MyGithubProfile)
 
-Former JavaME and JavaEE developer that made the transition to Android Native java Application Development.
-Multi-computer-language polyglot that can jump into anything and I do not play follow-the-leader but
-often follow my own unique way.(No recruiters, please for any reason)
+Computer language polyglot focusing on designing and developing Android Java Applications to Launch
+people's lives for start-ups. Quality Java Software Engineer begets quality
+GUI-intensive mobile applications.
+
+Only funded start-ups and no recruiters(No recruiters, PLEASE!)
+
 
 ### Repos
 
@@ -115,7 +150,7 @@ often follow my own unique way.(No recruiters, please for any reason)
 
 ### AboutMe
 
-[AboutMe profile](https://about.me/fredgrott)
+[AboutMe](https://about.me/fredgrott)
 
 
 License
