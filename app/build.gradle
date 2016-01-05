@@ -197,6 +197,7 @@ android {
         reportDir = "$rootProject.ext.ourReportsDir/androidTests"
         unitTests.all {
 
+            // test events logged and sent to console
             testLogging {
                 events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
                 outputs.upToDateWhen { false }
