@@ -14,10 +14,11 @@ import org.ajoberstar.grgit.Grgit
  */
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+// you can apply gradle snippets as plugins
 apply from: 'buildsystem/ci_travis.gradle'
 apply from: 'buildsystem/dependencies.gradle'
 
-
+// this is the repo and deps for the build scripts
 buildscript {
     repositories {
         jcenter()
@@ -50,11 +51,11 @@ buildscript {
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
         //probe
         classpath 'org.lucasr.probe:gradle-plugin:0.1.3'
-        //dex count pplugin
+        //dex count plugin
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.3.0"
         //jacoco-everywhere
         classpath 'com.trickyandroid:jacoco-everywhere:0.1.0'
-        // GrGit wrapper of JGit for crossplatform git stuff
+        // GrGit wrapper of JGit for cross-platform git stuff
         classpath 'org.ajoberstar:grgit:1.4.1'
 
 
