@@ -14,6 +14,11 @@
 # limitations under the License.
 
 # modify and than save and change file name to .travis.yml
+# NOTE: normal gradle operation is to build all subprojects
+#       in our android case with the exception of android phone
+#       and tablet all other device form factors are subproject
+#       modules and thus we need to create the avds first
+#       before the install
 
 language: android
 jdk: oraclejdk8
