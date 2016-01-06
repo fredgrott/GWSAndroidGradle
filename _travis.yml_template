@@ -1,0 +1,94 @@
+# Copyright 2014 Google Inc. All rights reserved.
+# Modifications Copyright(C) 2016 Fred Grott(GrottWorkShop)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# modify and than save and change file name to .travis.yml
+
+language: android
+jdk: oraclejdk8
+env:
+  global:
+    - TERM=dumb
+    # matrix notes:
+    #       in android components block we load two different things
+    #       the  sys images
+    #
+    # -t is avd target which can be android-16 or
+    #    something like Google Inc.:Google APIs:23 with quotes
+    # -abi should correspond to the system-images/target-api
+    #      layout ie,
+    #        default/armeabi-v7a
+    #        default/x86
+    #        google_apis/armeabi-v7a
+    #        google_apis/x86
+    #        android-tv/armeabi-v7a
+    #        android-tv/x86
+    #        android-wear/armeabi-v7a
+    #        android-wear/x86
+    #
+    #
+    #
+    #                        note to execute tests on different form
+    #                        factors one would do a before_install
+    #                        matrix entry that would map to
+    #                        each form factor using ANDROID_TARGET_PHONE
+    #                        ANDROID_TARGET_TV ANDROID_TARGET_WEAR
+    #                        etc in the script section one would
+    #                        use the bash script && to combine
+    #                        two gradle commands each one launching the
+    #                        different module device form factor
+    #                        builds with the different form factor
+    #                        targets
+    matrix:
+      - ANDROID_TARGET_PHONE=android-16 ANDROID_ABI=default/x86
+      - ANDROID_TARGET_PHONE=android-17 ANDROID_ABI=default/x86
+      - ANDROID_TARGET_PHONE=android-18 ANDROID_ABI=default/x86
+      - ANDROID_TARGET_PHONE=android-19 ANDROID_ABI=default/x86
+      - ANDROID_TARGET_PHONE=android-21 ANDROID_ABI=default/x86
+      - ANDROID_TARGET_PHONE=android-22 ANDROID_ABI=default/x86
+      - ANDROID_TARGET_PHONE=android-23 ANDROID_ABI=default/x86
+
+
+
+
+android:
+  components:
+    - build-tools-23.0.2
+    - android-23
+    - tools-25.0.1rc2
+    - platform-tools-23.1
+
+    - extra-google-m2repository-24.0.0
+    - extra-android-m2repository-25.0.0
+    - sys-img-x86-android-16
+    - sys-img-x86-android-17
+    - sys-img-x86-android-18
+    - sys-img-x86-android-19
+    - sys-img-x86-android-21
+    - sys-img-x86-android-22
+    - sys-img-x86-android-23
+
+notifications:
+  email: false
+
+# still need rest of android create avd parameters
+before_install:
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET_PHONE --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+
+before_script:
+  - ./scripts/wait_for_emulator.sh
+  - adb shell input keyevent 82 &
+
+script: ./gradlew build connectedAndroidTest

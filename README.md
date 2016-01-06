@@ -45,10 +45,21 @@ gradle build scripts concerns so that we get very readable module build scripts.
 This set of build scripts is optimized for fast compiling on junk laptops, that means that I am
 running the code qa stuff as local IDE plugins instead when I need that feedback.
 
+Git Hashes:
+
+   Implemented as cross-platform using the Grgit wrapper that wraps JGit libraries within the
+   root build script as that is the only place where one can do gradle import statements. In the
+   app modules than the git has is referenced as a rootProject ext global variable and stored in a
+   buildConfigField buildTypes block.
+
+   The main reason for this is so we track app module releases via the git hash to match up analytics
+   crash reports with the correct release causing the problem via the stored git hash
+   in the buildConfigField.
+
 Proguard:
 
-   workaround for samsung devices support lib goof/patch included, its known as the
-   4.x fix and its marked with comment sin the proguard-matches-android-omptimize.pro file.
+   Workaround for Samsung devices support lib goof/patch included, its known as the
+   4.x fix and its marked with comments in the proguard-matches-android-optimize.pro file.
 
 EditText:
 
@@ -60,8 +71,15 @@ App Sign Key:
    NOT SAFE for public repos, if you need with public repos you should change it to something reading from
    the command line as system.property that way you can still execute it on CI servers.
 
+AndroidTest:
 
+   Implemented system animations disable during testing via my own library of classes and the gradle
+   build script tasks and the AndroidManifest.xml files in androidTest.
 
+Travis CI:
+
+   no-boot-anim fails on api-23 images so the travis CI stuff needs to not have used as a before script
+   command.
 
 
 Usage
@@ -85,7 +103,7 @@ Computer language polyglot focusing on designing and developing Android Java App
 people's lives for start-ups. Quality Java Software Engineer begets quality
 GUI-intensive mobile applications.
 
-Only funded start-ups and no recruiters(No recruiters, PLEASE!)
+Only FUNDED start-ups and no recruiters(No recruiters, PLEASE!)
 
 
 ### Repos
@@ -99,6 +117,7 @@ Only funded start-ups and no recruiters(No recruiters, PLEASE!)
 [Twitter](https://twitter.com/fredgrott)
 [Facebook](http://www.facebook.com/fredgrott)
 [Reddit](http://www.reddit.com./user/fredgrott/)
+[GeekList](https://geekli.st/fredgrott)
 
 ### Bookmarks
 
@@ -116,6 +135,7 @@ Only funded start-ups and no recruiters(No recruiters, PLEASE!)
 [BuiltINChicago](http://www.builtinchicago.org/member/fred-grott)
 [HackerNews](https://news.ycombinator.com/user?id=fredgrott)
 [FounderDating](http://members.founderdating.com/profile/6572)
+
 
 ### Freelancing
 
