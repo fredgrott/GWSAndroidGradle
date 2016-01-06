@@ -81,6 +81,11 @@ Travis CI:
    no-boot-anim fails on api-23 images so the travis CI stuff needs to not have used as a before script
    command.
 
+Code QA:
+
+  Other than Android Lint, code qa will be executed on CI server. This way can work anywhere with even
+  junk laptops and still have code QA results generated.
+
 
 Usage
 -----
