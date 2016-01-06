@@ -45,6 +45,7 @@ def appVersionCode = advancedVersioning.versionCode
 /*
  We define some buildConfigField defs here to use
  */
+def STRING = "String"
 def BOOLEAN = "boolean"
 def TRUE = "true"
 def FALSE = "false"
@@ -52,6 +53,7 @@ def LOG_HTTP_REQUESTS = "LOG_HTTP_REQUESTS"
 def REPORT_CRASHES = "REPORT_CRASHES"
 def ENABLE_VIEW_SERVER = "ENABLE_VIEW_SERVER"
 def ENABLE_SHARING = "ENABLE_SHARING"
+def GIT_HASH = "GIT HASH"
 
 def DEBUG_VIEW = "DEBUG_VIEW"
 def DEBUG_DATA = "DEBUG_DATA"
@@ -204,6 +206,9 @@ android {
             buildConfigField BOOLEAN, REPORT_CRASHES, TRUE
             buildConfigField BOOLEAN, ENABLE_VIEW_SERVER, FALSE
             buildConfigField BOOLEAN, ENABLE_SHARING, FALSE
+            buildConfigField STRING, GIT_HASH, rootProject.ext.gitSha
+            buildConfigField "String", "BUILD_TIME", "\"${rootProject.ext.buildTime}\""
+
 
 
 

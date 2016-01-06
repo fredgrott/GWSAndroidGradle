@@ -188,6 +188,9 @@ android {
             buildConfigField BOOLEAN, ENABLE_VIEW_SERVER, FALSE
             buildConfigField BOOLEAN, ENABLE_SHARING, FALSE
             buildConfigField STRING, GIT_HASH, rootProject.ext.gitSha
+            buildConfigField "String", "BUILD_TIME", "\"${rootProject.ext.buildTime}\""
+
+
 
 
 
