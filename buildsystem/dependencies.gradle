@@ -137,6 +137,23 @@ ext {
     espressoRulesVersion = '0.4.1'
     espressoRunnerVersion = '0.4.1'
 
+
+    // used to replace UIAutomator for api 16 to api 22
+    cucumberAndroidVersion = '1.2.4'
+    cucumberPicocontainerVersion = '1.2.4'
+    cucumberJvmdepsVersion = '1.0.3'
+
+    cucumberDependencies = [
+            cucumberAndroid:"info.cukes:cucumber-android:$cucumberAndroidVersion",
+            cucumberPicocontainer:"info.cukes:cucumber-picocontainer:$cucumberPicocontainerVersion",
+            cucumberJvmdeps:"info.cukes:cucumber-jvm-deps:$cucumberJvmdepsVersion"
+    ]
+
+
+
+
+
+
     assertjVersion = '1.1.0'
 
     spoonClientVersion = '1.1.10'

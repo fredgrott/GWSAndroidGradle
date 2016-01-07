@@ -86,6 +86,10 @@ Code QA:
   Other than Android Lint, code qa will be executed on CI server. This way can work anywhere with even
   junk laptops and still have code QA results generated.
 
+UIAutomator and Cucumber:
+
+  Due to UIAutomator not accessible until api 21 we use a replacement called Cucumber.
+
 
 Usage
 -----
